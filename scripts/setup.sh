@@ -1,7 +1,5 @@
 #!/bin/bash
 
-sudo su -l go
-cd
 git clone https://github.com/argonmist/sisyphus.git
 git clone https://github.com/argonmist/triangle.git
 
