@@ -8,4 +8,3 @@ docker run --privileged -d -v $HOME/sisyphus:/root/sisyphus --net=host -e TZ="As
 sleep 5
 docker exec -ti android-dev cp bin/sisyphus /bin
 docker exec -ti android-dev sisyphus
-curl http://127.0.0.1:4723/wd/hub/status
