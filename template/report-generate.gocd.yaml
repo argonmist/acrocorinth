@@ -1,0 +1,61 @@
+format_version: 10
+environments:
+  sisyphus:
+    environment_variables:
+      device_name: <DEVICE_NAME>
+      android_version: <ANDROID_VERSION>
+      server_ip: <SERVER_IP>
+      testcase_path: yamls/android_testcase
+      android_app: <ANDROID_APP>
+      android_activity: <ANDROID_ACTIVITY>
+    pipelines:
+      - report-generate
+pipelines:
+  report-generate:
+    group: defaultGroup
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    timer:
+      spec: 0 0 0 ? * MON-FRI
+      only_on_changes: false
+    materials:
+      acrocorinth:
+        git: https://github.com/argonmist/acrocorinth.git
+        shallow_clone: false
+        auto_update: true
+        branch: main
+        destination: acrocorinth
+      yamls:
+        git: <YAML_GITLAB>
+        username: <USER>
+        shallow_clone: false
+        auto_update: true
+        branch: <BRANCH>
+        destination: yamls
+        password: '{{SECRET:[ci][yamls]}}'
+    stages:
+    - main:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: manual
+          allow_only_on_success: false
+        jobs:
+          prepare:
+            timeout: 0
+            tasks:
+            - exec:
+                arguments:
+                - acrocorinth/scripts/pipeline/prepare.sh
+                command: /bin/bash
+                run_if: passed
+          generate-report:
+            timeout: 0
+            tasks:
+            - exec:
+                arguments:
+                - acrocorinth/scripts/pipeline/report_gen.sh
+                command: /bin/bash
+                run_if: passed
