@@ -9,4 +9,5 @@ sudo usermod -aG sudo go
 sudo usermod -aG docker go
 sudo bash set-sudo-user.sh go
 sudo systemctl start go-server
+sudo chmod 666 /var/run/docker.sock
 
