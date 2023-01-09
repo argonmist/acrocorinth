@@ -9,15 +9,15 @@ ANDROID_APP=$(yq .ANDROID_APP ../settings.yaml)
 ANDROID_ACTIVITY=$(yq .ANDROID_ACTIVITY ../settings.yaml)
 pipeline=("report-generate" "report-serve" "gitbook")
 
-cmd="yq -i '.environments.sisyphus.environment_variables.device_name = \"$DEVICE_NAME\"' ../template/acrocorinth.yaml"
+cmd="yq -i '.environments.acrocorinth.environment_variables.device_name = \"$DEVICE_NAME\"' ../template/acrocorinth.yaml"
 eval $cmd
-cmd="yq -i '.environments.sisyphus.environment_variables.android_version = $ANDROID_VERSION' ../template/acrocorinth.yaml"
+cmd="yq -i '.environments.acrocorinth.environment_variables.android_version = $ANDROID_VERSION' ../template/acrocorinth.yaml"
 eval $cmd
-cmd="yq -i '.environments.sisyphus.environment_variables.server_ip = \"$SERVER_IP\"' ../template/acrocorinth.yaml"
+cmd="yq -i '.environments.acrocorinth.environment_variables.server_ip = \"$SERVER_IP\"' ../template/acrocorinth.yaml"
 eval $cmd
-cmd="yq -i '.environments.sisyphus.environment_variables.android_app = \"$ANDROID_APP\"' ../template/acrocorinth.yaml"
+cmd="yq -i '.environments.acrocorinth.environment_variables.android_app = \"$ANDROID_APP\"' ../template/acrocorinth.yaml"
 eval $cmd
-cmd="yq -i '.environments.sisyphus.environment_variables.android_activity = \"$ANDROID_ACTIVITY\"' ../template/acrocorinth.yaml"
+cmd="yq -i '.environments.acrocorinth.environment_variables.android_activity = \"$ANDROID_ACTIVITY\"' ../template/acrocorinth.yaml"
 eval $cmd
 
 for i in ${pipeline[@]}; do

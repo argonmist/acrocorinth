@@ -1,6 +1,6 @@
 format_version: 10
 environments:
-  sisyphus:
+  acrocorinth:
     environment_variables:
       device_name: <DEVICE_NAME>
       android_version: <ANDROID_VERSION>
