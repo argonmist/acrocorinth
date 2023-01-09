@@ -1,5 +1,6 @@
 #!/bin/bash
 
+mkdir -p bdd-report/android/
 git clone https://github.com/argonmist/sisyphus.git
 git clone https://github.com/argonmist/triangle.git
 
