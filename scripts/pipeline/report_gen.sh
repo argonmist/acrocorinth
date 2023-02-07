@@ -15,6 +15,8 @@ docker restart android-dev
 sleep 10
 docker exec -i android-dev adb connect $device_name
 sleep 3
+docker exec -i android-dev adb -s $device_name forward --remove-all
+sleep 3
 readarray -t order < yamls/android_test_order
 for i in "${order[@]}"
 do
